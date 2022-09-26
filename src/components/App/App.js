@@ -44,7 +44,7 @@ function App() {
       <div className="popup popup_place_avatar">
         <div className="popup__small-container">
           <h3 className="popup__title">Обновить аватар</h3>
-          <form name="formAvatar" className="form form_place_avatar" novalidate>
+          <form name="formAvatar" className="form form_place_avatar" noValidate>
             <input
               type="url"
               placeholder="Ссылка на картинку"
@@ -71,7 +71,7 @@ function App() {
           <form
             name="formProfile"
             className="form form_place_profile"
-            novalidate
+            noValidate
           >
             <input
               type="text"
@@ -80,8 +80,8 @@ function App() {
               name="name"
               id="name"
               required
-              minlength="2"
-              maxlength="40"
+              minLength="2"
+              maxLength="40"
             />
             <span id="name-error" className="error form__input-error"></span>
             <input
@@ -91,8 +91,8 @@ function App() {
               name="about"
               id="about"
               required
-              minlength="2"
-              maxlength="200"
+              minLength="2"
+              maxLength="200"
             />
             <span id="about-error" className="error form__input-error"></span>
             <button className="popup__button" type="submit">
@@ -109,7 +109,7 @@ function App() {
       <div className="popup popup_place_card">
         <div className="popup__container">
           <h3 className="popup__title">Новое место</h3>
-          <form name="formPlace" className="form form_place_card" novalidate>
+          <form name="formPlace" className="form form_place_card" noValidate>
             <input
               type="text"
               placeholder="Название"
@@ -117,8 +117,8 @@ function App() {
               name="name"
               id="name-card"
               required
-              minlength="2"
-              maxlength="30"
+              minLength="2"
+              maxLength="30"
             />
             <span
               id="name-card-error"
@@ -161,7 +161,7 @@ function App() {
       <div className="popup popup_place_delete">
         <div className="popup__delete-container">
           <h3 className="popup__small-title">Вы уверены?</h3>
-          <form name="formDelete" className="form form_place_delete" novalidate>
+          <form name="formDelete" className="form form_place_delete" noValidate>
             <button
               className="popup__button popup__button_place_delete"
               type="submit"
