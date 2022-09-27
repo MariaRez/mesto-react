@@ -1,12 +1,15 @@
 import React from "react";
+import logo from "../../images/Vector.svg";
+import avatar from "../../images/image.jpg";
 
 function App() {
   return (
-    <div className="page">
+    <div className="body">
+          <div className="page">
       <header className="header">
         <img
           className="logo"
-          src="<%=require('./images/Vector.svg')%>"
+          src={logo}
           alt="Логотоп Место Россия"
         />
       </header>
@@ -15,7 +18,7 @@ function App() {
           <div className="profile__avatar">
             <img
               className="profile__avatar-image"
-              src="<%=require('./images/image.jpg')%>"
+              src={avatar}
               alt="Аватарка"
             />
           </div>
@@ -176,6 +179,20 @@ function App() {
           </form>
         </div>
       </div>
+    </div>
+    <template className="elements-template">
+    <div className="element">
+        <img className="element__image"/>
+        <button aria-label="Delete card" className="element__trash" type="button"></button>
+        <div className="element__rectangle">
+         <h3 className="element__text"></h3>
+         <div className="element__like-zone">
+          <button aria-label="Like card" className="element__like" type="button"></button>
+          <p className="element__like-counter">1</p>
+         </div>
+        </div>
+    </div>
+  </template>
     </div>
   );
 }
