@@ -1,49 +1,15 @@
 import React from "react";
-import logo from "../../images/Vector.svg";
-import avatar from "../../images/image.jpg";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import Main from "../Main/Main";
 
 function App() {
   return (
     <div className="body">
           <div className="page">
-      <header className="header">
-        <img
-          className="logo"
-          src={logo}
-          alt="Логотоп Место Россия"
-        />
-      </header>
-      <main>
-        <section className="profile">
-          <div className="profile__avatar">
-            <img
-              className="profile__avatar-image"
-              src={avatar}
-              alt="Аватарка"
-            />
-          </div>
-          <div className="profile__profile-info">
-            <div className="profile__name-button">
-              <h1 className="profile__name">Жак-Ив Кусто</h1>
-              <button
-                aria-label="Edit Profile"
-                className="profile__edit-button"
-                type="button"
-              ></button>
-            </div>
-            <p className="profile__description">Исследователь океана</p>
-          </div>
-          <button
-            aria-label="Add card"
-            className="profile__add-button"
-            type="button"
-          ></button>
-        </section>
-        <section className="elements"></section>
-      </main>
-      <footer className="footer">
-        <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
+          <Header />
+          <Main />
+          <Footer />
       <div className="popup popup_place_avatar">
         <div className="popup__small-container">
           <h3 className="popup__title">Обновить аватар</h3>
