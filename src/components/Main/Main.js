@@ -1,4 +1,5 @@
 import React from 'react';
+import './Main.css';
 import avatar from "../../images/image.jpg";
 
 function Main () {
