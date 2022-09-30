@@ -6,15 +6,36 @@ import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 function App() {
+  const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    console.log("Открыли попап для изменения аватара");
+    setEditAvatarPopupState(true);
+  }
+  function handleEditProfileClick() {
+    console.log("Открыли попап для изменения профиля");
+    setEditProfilePopupState(true);
+  }
+  function handleAddPlaceClick() {
+    setAddPlacePopupState(true);
+  }
+  function closeAllPopups() {
+    setEditAvatarPopupState(false);
+    setEditProfilePopupState(false);
+    setAddPlacePopupState(false);
+  }
   return (
     <div className="body">
       <div className="page">
         <Header />
-        <Main />
+        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}/>
         <Footer />
         <PopupWithForm
           name="avatar"
           title="Обновить аватар"
+          onClose = {closeAllPopups} isOpen={isEditAvatarPopupOpen}
           children={
             <>
               <input
@@ -38,6 +59,7 @@ function App() {
         <PopupWithForm
           name="profile"
           title="Редактировать профиль"
+          onClose = {closeAllPopups} isOpen={isEditProfilePopupOpen}
           children={
             <>
               <input
@@ -71,6 +93,7 @@ function App() {
         <PopupWithForm
           name="card"
           title="Новое место"
+          onClose = {closeAllPopups} isOpen={isAddPlacePopupOpen}
           children={
             <>
               <input

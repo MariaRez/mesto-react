@@ -1,2 +1,4 @@
-node_modules
-dist
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json
