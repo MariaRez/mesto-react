@@ -106,28 +106,20 @@ function App() {
           }
         />
         <PopupWithImage />
-        <div className="popup popup_place_delete">
-          <div className="popup__delete-container">
-            <h3 className="popup__small-title">Вы уверены?</h3>
-            <form
-              name="formDelete"
-              className="form form_place_delete"
-              noValidate
-            >
+        <PopupWithForm
+          name="delete"
+          title="Вы уверены?"
+          children={
+            <>
               <button
                 className="popup__button popup__button_place_delete"
                 type="submit"
               >
                 Да
               </button>
-              <button
-                aria-label="Close"
-                className="popup__close-button popup__close-button_place_image"
-                type="button"
-              ></button>
-            </form>
-          </div>
-        </div>
+            </>
+          }
+        />
       </div>
       <template className="elements-template">
         <div className="element">

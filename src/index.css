@@ -15,9 +15,7 @@
 @import url(../src/blocks/popup/_place/popup_place_image.css);
 @import url(../src/blocks/popup/_opened/popup_opened.css);
 @import url(../src/blocks/popup/__container/popup__container.css);
-@import url(../src/blocks/popup/__delete-container/popup__delete-container.css);
 @import url(../src/blocks/popup/__title/popup__title.css);
-@import url(../src/blocks/popup/__small-title/popup__small-title.css);
 @import url(../src/blocks/popup/__field/popup__field.css);
 @import url(../src/blocks/popup/__field/_type/popup__field_type_name.css);
 @import url(../src/blocks/popup/__field/_type/popup__field_type_error.css);
