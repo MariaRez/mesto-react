@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import PopupWithImage from "../PopupWithImage/PopupWithImage";
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
           <Main />
           <Footer />
       <div className="popup popup_place_avatar">
-        <div className="popup__small-container">
+        <div className="popup__container">
           <h3 className="popup__title">Обновить аватар</h3>
-          <form name="formAvatar" className="form form_place_avatar" noValidate>
+          <form name="form_avatar" className="form form_place_avatar" noValidate>
             <input
               type="url"
               placeholder="Ссылка на картинку"
@@ -38,7 +39,7 @@ function App() {
         <div className="popup__container">
           <h3 className="popup__title">Редактировать профиль</h3>
           <form
-            name="formProfile"
+            name="form_profile"
             className="form form_place_profile"
             noValidate
           >
@@ -78,7 +79,7 @@ function App() {
       <div className="popup popup_place_card">
         <div className="popup__container">
           <h3 className="popup__title">Новое место</h3>
-          <form name="formPlace" className="form form_place_card" noValidate>
+          <form name="form_card" className="form form_place_card" noValidate>
             <input
               type="text"
               placeholder="Название"
@@ -116,17 +117,7 @@ function App() {
           </form>
         </div>
       </div>
-      <div className="popup popup_place_image">
-        <div className="popup__image-container">
-          <img className="popup__image" />
-          <h4 className="popup__text"></h4>
-          <button
-            aria-label="Close"
-            className="popup__close-button popup__close-button_place_image"
-            type="button"
-          ></button>
-        </div>
-      </div>
+      <PopupWithImage />
       <div className="popup popup_place_delete">
         <div className="popup__delete-container">
           <h3 className="popup__small-title">Вы уверены?</h3>
