@@ -5,6 +5,7 @@ import { api } from "../../utils/Api";
 import Card from "../Card/Card";
 
 function Main(props) {
+  
   const [userAvatar, setUserAvatar] = React.useState(avatar);
   const [userName, setUserName] = React.useState("Жак Ив Кусто");
   const [userDescription, setUserDescription] = React.useState("Исследователь океана");
@@ -52,7 +53,7 @@ function Main(props) {
       <section className="elements">
         {
           cards.map(element =>
-            <Card card={element} key={element._id}/>
+            <Card card={element} onCardClick={props.onCardClick} key={element._id}/>
             )
         }
       </section>

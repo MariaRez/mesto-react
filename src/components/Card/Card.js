@@ -1,7 +1,15 @@
 function Card(props) {
+
+  function handleClick() {
+    props.onCardClick(props.card);
+  } 
+  
     return (
         <div className="element">
-        <img className="element__image" src={props.card.link} alt={props.card.name}/>
+        <img className="element__image"
+        onClick={handleClick}
+        src={props.card.link}
+        alt={props.card.name}/>
         <button
           aria-label="Delete card"
           className="element__trash"

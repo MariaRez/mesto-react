@@ -1,43 +1,49 @@
-import React from "react";
+import React from 'react';
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import PopupWithImage from "../PopupWithImage/PopupWithImage";
+import ImagePopup from "../ImagePopup/ImagePopup";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     console.log("Открыли попап для изменения аватара");
-    setEditAvatarPopupState(true);
+    setEditAvatarPopupOpen(true);
   }
   function handleEditProfileClick() {
     console.log("Открыли попап для изменения профиля");
-    setEditProfilePopupState(true);
+    setEditProfilePopupOpen(true);
   }
   function handleAddPlaceClick() {
-    setAddPlacePopupState(true);
+    console.log("Открыли попап для добавления новой карточки");
+    setAddPlacePopupOpen(true);
+  }
+  function handleCardClick(card) {
+    console.log("Открыли попап большой картинки")
+    setSelectedCard(card);
   }
   function closeAllPopups() {
-    setEditAvatarPopupState(false);
-    setEditProfilePopupState(false);
-    setAddPlacePopupState(false);
+    setEditAvatarPopupOpen(false);
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setSelectedCard({});
   }
   return (
     <div className="body">
       <div className="page">
         <Header />
-        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}/>
+        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick}/>
         <Footer />
         <PopupWithForm
           name="avatar"
           title="Обновить аватар"
-          onClose = {closeAllPopups} isOpen={isEditAvatarPopupOpen}
-          children={
-            <>
+          card={selectedCard}
+          onClose = {closeAllPopups} isOpen={isEditAvatarPopupOpen} >
               <input
                 type="url"
                 placeholder="Ссылка на картинку"
@@ -53,16 +59,12 @@ function App() {
               <button className="popup__button" type="submit">
                 Сохранить
               </button>
-            </>
-          }
-        />
+          </PopupWithForm>
         <PopupWithForm
           name="profile"
           title="Редактировать профиль"
-          onClose = {closeAllPopups} isOpen={isEditProfilePopupOpen}
-          children={
-            <>
-              <input
+          onClose = {closeAllPopups} isOpen={isEditProfilePopupOpen} >
+            <input
                 type="text"
                 placeholder="Имя"
                 className="popup__field popup__field_type_name form__input"
@@ -87,16 +89,12 @@ function App() {
               <button className="popup__button" type="submit">
                 Сохранить
               </button>
-            </>
-          }
-        />
+        </PopupWithForm>
         <PopupWithForm
           name="card"
           title="Новое место"
-          onClose = {closeAllPopups} isOpen={isAddPlacePopupOpen}
-          children={
-            <>
-              <input
+          onClose = {closeAllPopups} isOpen={isAddPlacePopupOpen} >
+             <input
                 type="text"
                 placeholder="Название"
                 className="popup__field popup__field_type_placename form__input"
@@ -125,46 +123,19 @@ function App() {
               >
                 Создать
               </button>
-            </>
-          }
-        />
-        <PopupWithImage />
+        </PopupWithForm>
         <PopupWithForm
           name="delete"
-          title="Вы уверены?"
-          children={
-            <>
-              <button
-                className="popup__button popup__button_place_delete"
-                type="submit"
-              >
-                Да
-              </button>
-            </>
-          }
-        />
+          title="Вы уверены?" >
+            <button
+            className="popup__button popup__button_place_delete"
+            type="submit"
+            >
+            Да
+            </button>
+        </PopupWithForm>
+        <ImagePopup onClose = {closeAllPopups} card={selectedCard} />
       </div>
-      <template className="elements-template">
-        <div className="element">
-          <img className="element__image" />
-          <button
-            aria-label="Delete card"
-            className="element__trash"
-            type="button"
-          ></button>
-          <div className="element__rectangle">
-            <h3 className="element__text"></h3>
-            <div className="element__like-zone">
-              <button
-                aria-label="Like card"
-                className="element__like"
-                type="button"
-              ></button>
-              <p className="element__like-counter">1</p>
-            </div>
-          </div>
-        </div>
-      </template>
     </div>
   );
 }
