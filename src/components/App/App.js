@@ -42,6 +42,7 @@ function App() {
         <PopupWithForm
           name="avatar"
           title="Обновить аватар"
+          buttonText="Сохранить"
           card={selectedCard}
           onClose = {closeAllPopups} isOpen={isEditAvatarPopupOpen} >
               <input
@@ -56,13 +57,11 @@ function App() {
                 id="avatar-error"
                 className="error form__input-error"
               ></span>
-              <button className="popup__button" type="submit">
-                Сохранить
-              </button>
           </PopupWithForm>
         <PopupWithForm
           name="profile"
           title="Редактировать профиль"
+          buttonText="Сохранить"
           onClose = {closeAllPopups} isOpen={isEditProfilePopupOpen} >
             <input
                 type="text"
@@ -86,13 +85,11 @@ function App() {
                 maxLength="200"
               />
               <span id="about-error" className="error form__input-error"></span>
-              <button className="popup__button" type="submit">
-                Сохранить
-              </button>
         </PopupWithForm>
         <PopupWithForm
           name="card"
           title="Новое место"
+          buttonText="Создать"
           onClose = {closeAllPopups} isOpen={isAddPlacePopupOpen} >
              <input
                 type="text"
@@ -117,22 +114,11 @@ function App() {
                 required
               />
               <span id="link-error" className="error form__input-error"></span>
-              <button
-                className="popup__button popup__button_place_card"
-                type="submit"
-              >
-                Создать
-              </button>
         </PopupWithForm>
         <PopupWithForm
           name="delete"
-          title="Вы уверены?" >
-            <button
-            className="popup__button popup__button_place_delete"
-            type="submit"
-            >
-            Да
-            </button>
+          title="Вы уверены?"
+          buttonText="Да" >
         </PopupWithForm>
         <ImagePopup onClose = {closeAllPopups} card={selectedCard} />
       </div>
