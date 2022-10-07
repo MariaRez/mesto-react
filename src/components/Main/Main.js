@@ -9,7 +9,7 @@ function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
-  function handleCardLike(card) { //ищи тут
+  function handleCardLike(card) { 
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.toggleLike(card._id, isLiked)
     .then((newCard) => {
@@ -17,7 +17,7 @@ function Main(props) {
     });
 } 
 
-  function handleCardDelete (card) { //ищи тут
+  function handleCardDelete (card) {
     api.deleteCard(card._id)
     .then(() => {
       setCards(cards.filter((c) => c._id !== card._id));
