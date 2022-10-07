@@ -59,21 +59,14 @@ class Api {
         .then(this._сheckServerResponseStatus);
     }
 
-    makeLike(_id) { //Поставить лайк
+    toggleLike(_id, isLiked) {
+        let method = isLiked ? 'DELETE':'PUT';
         return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
-            method: 'PUT',
-            headers: this._headers,
+          method: method,
+          headers: this._headers,
         })
-        .then(this._сheckServerResponseStatus);
-    }
-
-    deleteLike(_id) {//Убрать лайк
-        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
-            method: 'DELETE',
-            headers: this._headers,
-        })
-        .then(this._сheckServerResponseStatus);
-    }
+        .then(res => this._сheckServerResponseStatus(res))
+      };
 
     editAvatar(avatar){
         return fetch(`${this._baseUrl}/users/me/avatar`, {
