@@ -7,6 +7,8 @@ import ImagePopup from "../ImagePopup/ImagePopup";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { api } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import EditProfilePopup from "../EditProfilePopup/EditProfilePopup";
+import EditAvatarPopup from "../EditAvatarPopup/EditAvatarPopup";
 
 function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
@@ -14,7 +16,7 @@ function App() {
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({name: "", about: "", avatar: ""});
 
   React.useEffect(() => {
     api
@@ -26,6 +28,28 @@ function App() {
         console.log(err);
       });
   }, []);
+
+  function handleUpdateAvatar(avatar) {
+    api.editAvatar(avatar)
+    .then((userAvatar) => {
+      setCurrentUser(userAvatar);
+      setEditAvatarPopupOpen(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  function handleUpdateUser(data) {
+    api.editProfile(data)
+      .then((userData) => {
+        setCurrentUser(userData);
+        setEditProfilePopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   function handleEditAvatarClick() {
     console.log("Открыли попап для изменения аватара");
@@ -61,54 +85,14 @@ function App() {
             onCardClick={handleCardClick}
           />
           <Footer />
-          <PopupWithForm
-            name="avatar"
-            title="Обновить аватар"
-            buttonText="Сохранить"
-            card={selectedCard}
-            onClose={closeAllPopups}
-            isOpen={isEditAvatarPopupOpen}
-          >
-            <input
-              type="url"
-              placeholder="Ссылка на картинку"
-              className="popup__field popup__field_type_avatarlink form__input"
-              name="avatar"
-              id="avatar"
-              required
-            />
-            <span id="avatar-error" className="error form__input-error"></span>
-          </PopupWithForm>
-          <PopupWithForm
-            name="profile"
-            title="Редактировать профиль"
-            buttonText="Сохранить"
-            onClose={closeAllPopups}
-            isOpen={isEditProfilePopupOpen}
-          >
-            <input
-              type="text"
-              placeholder="Имя"
-              className="popup__field popup__field_type_name form__input"
-              name="name"
-              id="name"
-              required
-              minLength="2"
-              maxLength="40"
-            />
-            <span id="name-error" className="error form__input-error"></span>
-            <input
-              type="text"
-              placeholder="О себе"
-              className="popup__field popup__field_type_description form__input"
-              name="about"
-              id="about"
-              required
-              minLength="2"
-              maxLength="200"
-            />
-            <span id="about-error" className="error form__input-error"></span>
-          </PopupWithForm>
+          <EditAvatarPopup 
+          isOpen={isEditAvatarPopupOpen} 
+          onClose={closeAllPopups} 
+          onUpdateAvatar={handleUpdateAvatar} />
+          <EditProfilePopup 
+           isOpen={isEditProfilePopupOpen} 
+           onClose={closeAllPopups} 
+           onUpdateUser={handleUpdateUser} />
           <PopupWithForm
             name="card"
             title="Новое место"
