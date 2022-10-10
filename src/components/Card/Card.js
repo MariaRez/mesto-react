@@ -9,7 +9,7 @@ function Card(props) {
   }`;
   const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
   const cardLikeButtonClassName = `element__like ${
-    isLiked ? "element__like_active" : ""
+    isLiked && "element__like_active"
   }`;
 
   function handleClick() {

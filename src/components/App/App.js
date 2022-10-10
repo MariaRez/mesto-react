@@ -16,7 +16,11 @@ function App() {
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-  const [currentUser, setCurrentUser] = useState({name: "", about: "", avatar: ""});
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    about: "",
+    avatar: "",
+  });
 
   React.useEffect(() => {
     api
@@ -30,25 +34,27 @@ function App() {
   }, []);
 
   function handleUpdateAvatar(avatar) {
-    api.editAvatar(avatar)
-    .then((userAvatar) => {
-      setCurrentUser(userAvatar);
-      setEditAvatarPopupOpen(false);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    api
+      .editAvatar(avatar)
+      .then((userAvatar) => {
+        setCurrentUser(userAvatar);
+        setEditAvatarPopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleUpdateUser(data) {
-    api.editProfile(data)
+    api
+      .editProfile(data)
       .then((userData) => {
         setCurrentUser(userData);
         setEditProfilePopupOpen(false);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   function handleEditAvatarClick() {
@@ -85,14 +91,16 @@ function App() {
             onCardClick={handleCardClick}
           />
           <Footer />
-          <EditAvatarPopup 
-          isOpen={isEditAvatarPopupOpen} 
-          onClose={closeAllPopups} 
-          onUpdateAvatar={handleUpdateAvatar} />
-          <EditProfilePopup 
-           isOpen={isEditProfilePopupOpen} 
-           onClose={closeAllPopups} 
-           onUpdateUser={handleUpdateUser} />
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
+          />
           <PopupWithForm
             name="card"
             title="Новое место"

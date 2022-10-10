@@ -1,6 +1,5 @@
 import React from "react";
 import "./Main.css";
-import avatar from "../../images/image.jpg";
 import { api } from "../../utils/Api";
 import Card from "../Card/Card";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -9,17 +8,15 @@ function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
-  function handleCardLike(card) { 
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.toggleLike(card._id, isLiked)
-    .then((newCard) => {
-      setCards(cards.map((c) => c._id === card._id ? newCard : c));
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api.toggleLike(card._id, isLiked).then((newCard) => {
+      setCards(cards.map((c) => (c._id === card._id ? newCard : c)));
     });
-} 
+  }
 
-  function handleCardDelete (card) {
-    api.deleteCard(card._id)
-    .then(() => {
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then(() => {
       setCards(cards.filter((c) => c._id !== card._id));
     });
   }
