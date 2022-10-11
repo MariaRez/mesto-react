@@ -70,14 +70,14 @@ function App() {
 
   function handleAddPlace(data) {
     api
-    .addNewCard(data)
-    .then((newCard) => {
-      setCards([newCard, ...cards]);
-      setAddPlacePopupOpen(false);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .addNewCard(data)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        setAddPlacePopupOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleEditAvatarClick() {
@@ -103,18 +103,29 @@ function App() {
     setSelectedCard({});
   }
 
-   function handleCardLike(card) {
-      const isLiked = card.likes.some((i) => i._id === currentUser._id);
-      api.toggleLike(card._id, isLiked).then((newCard) => {
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api
+      .toggleLike(card._id, isLiked)
+      .then((newCard) => {
         setCards(cards.map((c) => (c._id === card._id ? newCard : c)));
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }
-  
-    function handleCardDelete(card) {
-      api.deleteCard(card._id).then(() => {
-        setCards(cards.filter((c) => c._id !== card._id));
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((c) => c._id !== card._id);
+        setCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -126,8 +137,8 @@ function App() {
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
-            cards={cards} 
-            onCardLike={handleCardLike} 
+            cards={cards}
+            onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
           />
           <Footer />
@@ -141,7 +152,7 @@ function App() {
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
-          <AddPlacePopup 
+          <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlace}
@@ -151,9 +162,7 @@ function App() {
             title="Вы уверены?"
             buttonText="Да"
           ></PopupWithForm>
-          <ImagePopup
-            onClose={closeAllPopups} 
-            card={selectedCard} />
+          <ImagePopup onClose={closeAllPopups} card={selectedCard} />
         </div>
       </div>
     </CurrentUserContext.Provider>
