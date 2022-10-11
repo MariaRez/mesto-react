@@ -6,7 +6,6 @@ function PopupWithForm(props) {
         <form
           name={`form_${props.name}}`}
           className="form form_place_profile"
-          noValidate
         >
           {props.children}
           <button

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -143,16 +142,18 @@ function App() {
             onUpdateUser={handleUpdateUser}
           />
           <AddPlacePopup 
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-          onAddPlace={handleAddPlace}
+            isOpen={isAddPlacePopupOpen}
+            onClose={closeAllPopups}
+            onAddPlace={handleAddPlace}
           />
           <PopupWithForm
             name="delete"
             title="Вы уверены?"
             buttonText="Да"
           ></PopupWithForm>
-          <ImagePopup onClose={closeAllPopups} card={selectedCard} />
+          <ImagePopup
+            onClose={closeAllPopups} 
+            card={selectedCard} />
         </div>
       </div>
     </CurrentUserContext.Provider>
