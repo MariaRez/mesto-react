@@ -108,7 +108,7 @@ function App() {
     api
       .toggleLike(card._id, isLiked)
       .then((newCard) => {
-        setCards(cards.map((c) => (c._id === card._id ? newCard : c)));
+        setCards((prevValue)=>{return prevValue.map((c) => c._id === card._id ? newCard : c)});
       })
       .catch((err) => {
         console.log(err);
@@ -119,8 +119,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
-        const newCards = cards.filter((c) => c._id !== card._id);
-        setCards(newCards);
+        setCards((prevValue)=> prevValue.filter((c) => c._id !== card._id));
       })
       .catch((err) => {
         console.log(err);
